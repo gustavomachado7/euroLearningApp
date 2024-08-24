@@ -23,7 +23,7 @@ class _Homepage extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(0, 53, 142, 1),
+      backgroundColor: const Color.fromRGBO(0, 58, 112, 1),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(55.0),
         child: Container(

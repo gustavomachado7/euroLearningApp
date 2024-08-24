@@ -11,6 +11,7 @@ class DetalhesCursoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(0, 58, 112, 1),
       appBar: AppBar(
         title: Text(curso.title),
       ),
@@ -36,7 +37,7 @@ class DetalhesCursoPage extends StatelessWidget {
                       Icon(
                         Icons.person,
                         size: 120,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ],
                   ),
@@ -55,7 +56,7 @@ class DetalhesCursoPage extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w900,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -67,7 +68,7 @@ class DetalhesCursoPage extends StatelessWidget {
                             ? ''
                             : DateFormat("'Data de Início:' d 'de' MMM 'de' y")
                                 .format(curso.startDate!),
-                        style: const TextStyle(color: Colors.grey),
+                        style: const TextStyle(color: Colors.white),
                       ),
                       Text(
                         curso.endDate == null
@@ -75,12 +76,12 @@ class DetalhesCursoPage extends StatelessWidget {
                             : DateFormat(
                                     "'Data de Término: ' d 'de' MMM 'de' y")
                                 .format(curso.endDate!),
-                        style: const TextStyle(color: Colors.grey),
+                        style: const TextStyle(color: Colors.white),
                       ),
                       Text(
                         'Instrutor(a): ${curso.teacher}',
                         style: const TextStyle(
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(
@@ -89,7 +90,7 @@ class DetalhesCursoPage extends StatelessWidget {
                       Text(
                         'Duração do curso: ${curso.duration} h',
                         style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -106,6 +107,7 @@ class DetalhesCursoPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
+                color: Colors.white
               ),
             )),
             const SizedBox(
@@ -113,7 +115,7 @@ class DetalhesCursoPage extends StatelessWidget {
             ),
             Text(
               curso.overview,
-              style: const TextStyle(fontSize: 14, color: Colors.black),
+              style: const TextStyle(fontSize: 14, color: Colors.white),
             ),
             const SizedBox(
               height: 30.0,
@@ -124,6 +126,7 @@ class DetalhesCursoPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
+                  color: Colors.white
                 ),
               ),
             ),
@@ -137,9 +140,11 @@ class DetalhesCursoPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                   child: Row(
                     children: [
-                      const Icon(Icons.check, color: Colors.green),
+                      const Icon(Icons.check, color: Colors.white),
                       const SizedBox(width: 8.0),
-                      Expanded(child: Text(topic)),
+                      Expanded(child: Text(topic,
+                      style: TextStyle( color: Colors.white),),
+                      ),
                     ],
                   ),
                 );
