@@ -35,7 +35,7 @@ class DetalhesCursoPage extends StatelessWidget {
                       ),
                       Icon(
                         Icons.person,
-                        size: 105,
+                        size: 120,
                         color: Colors.black,
                       ),
                     ],
@@ -53,8 +53,8 @@ class DetalhesCursoPage extends StatelessWidget {
                         child: Text(
                           'Progresso: ${curso.progress}%',
                           style: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
                             color: Colors.black,
                           ),
                         ),

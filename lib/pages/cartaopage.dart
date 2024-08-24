@@ -5,10 +5,12 @@ class CartaoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         title: const Text('Autenticação de Presença'),
       ),
       body: Center(
+        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -33,18 +35,18 @@ class CartaoPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Cartão Virtual',
+                      'Crachá Virtual',
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     Row(
                       children: [
                         Icon(
-                          Icons.credit_card,
+                          Icons.person,
                           size: 64,
                           color: Colors.white.withOpacity(0.8),
                         ),
@@ -70,17 +72,6 @@ class CartaoPage extends StatelessWidget {
                           ],
                         ),
                       ],
-                    ),
-                    const Spacer(),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        'Val. 08/24',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white.withOpacity(0.8),
-                        ),
-                      ),
                     ),
                   ],
                 ),
