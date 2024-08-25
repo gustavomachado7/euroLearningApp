@@ -85,7 +85,7 @@ class Login extends StatelessWidget {
                     child: const Text(
                       'Enviar',
                       style: TextStyle(
-                        color: Color.fromRGBO(0, 53, 142, 1),
+                        color:  Color.fromRGBO(0, 58, 112, 1),
                       ),
                     ),
                   ),

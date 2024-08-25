@@ -1,6 +1,6 @@
-import 'package:eurolearning/models/curso_model.dart';
-import 'package:eurolearning/services/api.services.dart';
-import 'package:eurolearning/card/mycursos.dart';
+import 'package:eurolearning/models/treinamento_model.dart';
+import 'package:eurolearning/services/apiServices.dart';
+import 'package:eurolearning/card/myTreinamentos.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -12,11 +12,11 @@ class Homepage extends StatefulWidget {
 
 class _Homepage extends State<Homepage> {
   ApiServices apiServices = ApiServices();
-  List<Curso> cursos = [];
+  List<Treinamento> treinamentos = [];
 
   @override
   void initState() {
-    cursos = apiServices.getCursos();
+    treinamentos = apiServices.getTreinamentos();
     super.initState();
   }
 
@@ -31,7 +31,7 @@ class _Homepage extends State<Homepage> {
             color: Colors.white,
           ),
           child: AppBar(
-            title: const Text('Meus Cursos'),
+            title: const Text('Meus Treinamentos'),
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
@@ -40,11 +40,11 @@ class _Homepage extends State<Homepage> {
       body: Padding(
         padding: const EdgeInsets.only(top: 30.0),
         child: ListView.builder(
-          itemCount: cursos.length,
+          itemCount: treinamentos.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
-              child: MyCursos(curso: cursos[index]),
+              child: MyTreinamentos(treinamento: treinamentos[index]),
             );
           },
         ),
