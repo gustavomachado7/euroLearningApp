@@ -1,5 +1,5 @@
 import 'package:eurolearning/models/treinamento_model.dart';
-import 'package:eurolearning/services/apiServices.dart';
+import 'package:eurolearning/services/apiservices.dart';
 import 'package:eurolearning/card/myTreinamentos.dart';
 import 'package:flutter/material.dart';
 
