@@ -165,14 +165,11 @@ class DetalhesTreinamentoPage extends StatelessWidget {
               child: FutureBuilder<bool>(
                 future:networkService.isConnectedToCompanyWiFi(),
                 builder: (context, snapshot){
-                  if(snapshot.connectionState == ConnectionState.waiting){
-                    return CircularProgressIndicator();
-                  }else if (snapshot.hasError){
+                  if (snapshot.hasError){
                     return Text('Erro ao verificar a conexão', style: TextStyle(color: Colors.white));
-                  }else{
-                    bool isConnected = snapshot.data ?? false;
+                  }else if(snapshot.data==true){                    
                     return ElevatedButton(
-                      onPressed:  isConnected ? () async {
+                      onPressed: () async {
                         final isAutenticated = await localAuthApi.authenthicate();
                         if(isAutenticated){
                           Navigator.of(
@@ -182,7 +179,7 @@ class DetalhesTreinamentoPage extends StatelessWidget {
                             ),
                           );
                         }
-                      } : null ,
+                      }  ,
                       child: const Text(
                         'Autenticar Presença',
                         style: TextStyle(
@@ -190,6 +187,8 @@ class DetalhesTreinamentoPage extends StatelessWidget {
                         ),
                       ),
                     );
+                  }else{
+                    return Container();
                   }
                 } ,)                
               ),
