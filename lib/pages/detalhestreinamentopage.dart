@@ -3,13 +3,17 @@ import 'package:eurolearning/pages/cartaoPage.dart';
 import 'package:eurolearning/services/local_auth_api.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:eurolearning/services/networkService.dart';
 
 
 class DetalhesTreinamentoPage extends StatelessWidget {
   final LocalAuthApi localAuthApi = LocalAuthApi();
   final Treinamento treinamento;
+  final NetworkService networkService = NetworkService();
+  
 
   DetalhesTreinamentoPage({super.key, required this.treinamento});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -158,26 +162,37 @@ class DetalhesTreinamentoPage extends StatelessWidget {
               height: 30.0,
             ),
             Center(
-              child: ElevatedButton(
-                onPressed: () async {
-                  final isAutenticated = await localAuthApi.authenthicate();
-                  if(isAutenticated){
-                    Navigator.of(
-                      context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => const CartaoPage(),
+              child: FutureBuilder<bool>(
+                future:networkService.isConnectedToCompanyWiFi(),
+                builder: (context, snapshot){
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return CircularProgressIndicator();
+                  }else if (snapshot.hasError){
+                    return Text('Erro ao verificar a conexão', style: TextStyle(color: Colors.white));
+                  }else{
+                    bool isConnected = snapshot.data ?? false;
+                    return ElevatedButton(
+                      onPressed:  isConnected ? () async {
+                        final isAutenticated = await localAuthApi.authenthicate();
+                        if(isAutenticated){
+                          Navigator.of(
+                            context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => const CartaoPage(),
+                            ),
+                          );
+                        }
+                      } : null ,
+                      child: const Text(
+                        'Autenticar Presença',
+                        style: TextStyle(
+                          color: Color.fromRGBO(0, 58, 112, 1),
+                        ),
                       ),
                     );
                   }
-                },
-                child: const Text(
-                  'Autenticar Presença',
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 58, 112, 1),
-                  ),
-                ),
+                } ,)                
               ),
-            ),
           ],
         ),
       ),

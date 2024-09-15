@@ -2,6 +2,8 @@ import 'package:eurolearning/models/treinamento_model.dart';
 import 'package:eurolearning/services/apiservices.dart';
 import 'package:eurolearning/card/myTreinamentos.dart';
 import 'package:flutter/material.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:network_info_plus/network_info_plus.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -13,12 +15,33 @@ class Homepage extends StatefulWidget {
 class _Homepage extends State<Homepage> {
   ApiServices apiServices = ApiServices();
   List<Treinamento> treinamentos = [];
+  // bool isConnectedtoCompanyWiFi = false;
 
   @override
   void initState() {
     treinamentos = apiServices.getTreinamentos();
     super.initState();
+  
   }
+  // Future<void> checkNetworkConnection()async{
+  //   var connectivityResult = await (Connectivity().checkConnectivity());
+  //   if (connectivityResult == ConnectivityResult.wifi){
+  //     var wifiName = await (NetworkInfo().getWifiName());
+  //     if (wifiName == 'Calisti_5Ghz'){
+  //       setState(() {
+  //         isConnectedtoCompanyWiFi = true;
+  //       });
+  //     }else{
+  //       setState(() {
+  //         isConnectedtoCompanyWiFi = false;
+  //       });
+  //     }
+  //   }else{
+  //     setState(() {
+  //         isConnectedtoCompanyWiFi = false;
+  //       });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
