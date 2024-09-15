@@ -17,7 +17,7 @@ class ApiServices {
         "Controle de Qualidade e Garantia da Qualidade",
         "Higiene e Segurança no Ambiente de Produção"
       ],
-      courseOpen: false,
+      // courseOpen: false,
     );
 
     final treinamento2 = Treinamento(
@@ -35,7 +35,7 @@ class ApiServices {
         "Equipamentos e Infraestrutura",
         "Processos de Manipulação e Procedimentos Operacionais"
       ],
-      courseOpen: false,
+      // courseOpen: false,
     );
 
     final treinamento3 = Treinamento(
@@ -53,7 +53,7 @@ class ApiServices {
         "Coleta e Análise de Dados de Segurança",
         "Regulamentação e Normas para Farmacovigilância"
       ],
-      courseOpen: false,
+      // courseOpen: false,
     );
 
     final treinamento4 = Treinamento(
@@ -71,7 +71,7 @@ class ApiServices {
         "Documentação Necessária para Registro",
         "Análise e Avaliação de Dossiês de Registro"
       ],
-      courseOpen: false,
+      // courseOpen: false,
     );
 
     List<Treinamento> treinamentos = [

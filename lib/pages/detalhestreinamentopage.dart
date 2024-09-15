@@ -1,12 +1,15 @@
 import 'package:eurolearning/models/treinamento_model.dart';
 import 'package:eurolearning/pages/cartaoPage.dart';
+import 'package:eurolearning/services/local_auth_api.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+
 class DetalhesTreinamentoPage extends StatelessWidget {
+  final LocalAuthApi localAuthApi = LocalAuthApi();
   final Treinamento treinamento;
 
-  const DetalhesTreinamentoPage({super.key, required this.treinamento});
+  DetalhesTreinamentoPage({super.key, required this.treinamento});
 
   @override
   Widget build(BuildContext context) {
@@ -156,13 +159,16 @@ class DetalhesTreinamentoPage extends StatelessWidget {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CartaoPage(),
-                    ),
-                  );
+                onPressed: () async {
+                  final isAutenticated = await localAuthApi.authenthicate();
+                  if(isAutenticated){
+                    Navigator.of(
+                      context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const CartaoPage(),
+                      ),
+                    );
+                  }
                 },
                 child: const Text(
                   'Autenticar Presença',
