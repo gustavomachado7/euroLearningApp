@@ -1,7 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:eurolearning/pages/homepage.dart';
 
-class CartaoPage extends StatelessWidget {
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: CartaoPage(),
+      routes: {
+        '/home': (context) => Homepage(), // Registra a rota '/home'
+      },
+    );
+  }
+}
+
+class CartaoPage extends StatefulWidget {
   const CartaoPage({super.key});
+
+  @override
+  _CartaoPageState createState() => _CartaoPageState();
+}
+
+class _CartaoPageState extends State<CartaoPage> {
+  int _secondsLeft = 10; // Variável para controlar o tempo restante
+
+  @override
+  void initState() {
+    super.initState();
+    _startCountdown();
+  }
+
+  // Função para iniciar a contagem regressiva e redirecionar para a HomePage
+  void _startCountdown() {
+    Future.delayed(Duration(seconds: 1), _decrementCounter);
+  }
+
+  // Função para decrementar o contador a cada segundo
+  void _decrementCounter() {
+    if (_secondsLeft > 0) {
+      setState(() {
+        _secondsLeft--;
+      });
+      _startCountdown(); // Chama novamente a função para continuar a contagem
+    } else {
+      // Redireciona para a HomePage quando o tempo acabar
+      if (mounted) {
+        Navigator.pushNamed(context, '/home');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,82 +63,23 @@ class CartaoPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 5,
-                bottom: 10,
-                left: 40,
-                right: 40,
-              ),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: Text(
+                'Presença registrada com sucesso!',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
                 ),
-                elevation: 8,
-                child: Container(
-                  width: 300,
-                  height: 180,
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: const LinearGradient(
-                      colors: [Colors.blueAccent, Colors.lightBlueAccent],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Crachá Virtual',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            size: 64,
-                            color: Colors.white.withOpacity(0.8),
-                          ),
-                          const SizedBox(width: 20),
-                          const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                '               Alberto Sales',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                '                           ****3453',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                textAlign: TextAlign.center,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 70),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50),
               child: Text(
-                'Ative o Bluetooth para utilizar o seu cartão',
-                style: TextStyle(
+                'Você será redirecionado para a página inicial em $_secondsLeft segundos.',
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black54,
                 ),
@@ -100,3 +92,4 @@ class CartaoPage extends StatelessWidget {
     );
   }
 }
+

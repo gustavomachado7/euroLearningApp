@@ -70,11 +70,15 @@ class Login extends StatelessWidget {
                       if (login == "admin" && password == "admin") {
                         Navigator.pushNamed(context, '/home');
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Login ou senha incorretos!"),
-                          ),
-                        );
+                        if (login == "prof" && password == "prof") {
+                          Navigator.pushNamed(context, '/homeprof');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Login ou senha incorretos!"),
+                            ),
+                          );
+                        }
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -85,11 +89,18 @@ class Login extends StatelessWidget {
                     child: const Text(
                       'Enviar',
                       style: TextStyle(
-                        color:  Color.fromRGBO(0, 58, 112, 1),
+                        color: Color.fromRGBO(0, 58, 112, 1),
                       ),
                     ),
                   ),
                   const SizedBox(height: 8.0),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Esqueceu a senha?',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ],
               ),
             ),
